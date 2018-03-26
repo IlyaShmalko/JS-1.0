@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS-lessons-1</title>
+</head>
+<body>
+	<script>
+
+		var budget   = prompt('Ваш бюджет?');
+		var magName  = prompt('Название вашего магазина?');
+		var mainList = {};
+		var shopGoods = [];
+		var employers = {};
+
+		shopGoods[0] = prompt('Какой тип товаров будем продавать?'),
+		shopGoods[1] = prompt('Какой тип товаров будем продавать?'),
+		shopGoods[2] = prompt('Какой тип товаров будем продавать?');
+
+
+		mainList = {
+			budget: budget,
+			magName: magName,
+			mass: shopGoods,
+			employers: {
+				first: 'Jhon',
+				second: 'Bob',
+				thirh: 'Greg'
+			},
+			open: true
+		};
+
+		document.write( budget / 30 );
+		console.log( mainList );
+
+	</script>
+</body>
+</html>
