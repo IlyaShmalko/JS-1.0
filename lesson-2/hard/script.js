@@ -52,6 +52,6 @@ let arr = ['453', '35466', '76543', '564663', '789', '325677', '737373'];
 for (let j = 0; j < arr.length; j++) {
 
 	if (arr[j][0] == '3' || arr[j][0] == '7') {
-		document.write(arr[j] + '<br>');
+		console.log(arr[j]);
 	}
 }
