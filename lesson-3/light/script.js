@@ -1,7 +1,7 @@
 let money,
 		name,
-		time;
-let	price = '1000';
+		time,
+		price
 
 function start () {
 
