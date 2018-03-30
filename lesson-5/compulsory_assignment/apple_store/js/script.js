@@ -11,6 +11,9 @@ li.classList.add('menu-item');
 li.appendChild(liText);
 menu.appendChild(li);
 
+// Замена фона
+document.body.style.background = 'url(img/apple_true.jpg) center / cover no-repeat'
+
 // Меняем заголовок
 let title = document.getElementById('title');
 
