@@ -28,15 +28,6 @@ openBtn.addEventListener('click', () => {
 
 		nameValue.textContent  = prompt('Название вашего магазина?', '').toUpperCase();
 
-		let discount = confirm('Включить дисконтную систему?', '');
-
-		if (discount == true) {
-				mainList.discountSystem = true;
-				discountValue.style.backgroundColor = 'green';
-		} else {
-					mainList.discountSystem = false;
-					discountValue.style.backgroundColor = 'red';
-			}
 });
 
 goodsBtn.addEventListener('click', () => {
@@ -111,30 +102,6 @@ const mainList = {
 	employers: {},
 	open: false,
 	shopItems: [],
-	workTime: function workTime() {
-
-		let today = new Date();
-		let hourNow = today.getHours();
-
-		if (hourNow < 0) {
-				console.log('Такого не может быть!');
-				mainList.open = false;
-		} else if (hourNow > 8 && hourNow < 20) {
-				console.log('Время работать!');
-				mainList.open = true;
-				} else if (hourNow < 24) {
-						console.log('Уже слишком поздно!');
-						mainList.open = false;
-						} else {
-								console.log('В сутках только 24 часа!');
-								mainList.open = false;
-								}
-		if (mainList.open == true) {
-				isOpenValue.style.backgroundColor = 'green';
-		} else {
-					isOpenValue.style.backgroundColor = 'red';
-			}
-	},
 	discountSystem: false
 				
 };
