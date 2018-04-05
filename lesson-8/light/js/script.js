@@ -58,21 +58,56 @@ window.addEventListener('DOMContentLoaded', function() {
 						seconds = timer.querySelector('.seconds');
 
 				function updateClock() {
+
 						let t = getTimeRemaining(endtime);
-						hours.innerHTML = t.hours;
-						minutes.innerHTML = t.minutes;
-						seconds.innerHTML = t.seconds;
 
-						if (t.total <= 0) {
+						if (t.total > 0) {
+								hours.innerHTML = t.hours;
+								minutes.innerHTML = t.minutes;
+								seconds.innerHTML = t.seconds;
+						} else {
 								clearInterval(timeInterval);
+								hours.innerHTML = "00";
+								minutes.innerHTML = "00";
+								seconds.innerHTML = "00";
 						}
-
 				};
 
-				updateClock();
 				let timeInterval = setInterval(updateClock, 1000);
+				updateClock();
 		};
 
 		setClock('timer', deadline);
+		
+		// Smooth transition
+
+		function animate(draw, duration) {
+        let start = performance.now();
+        requestAnimationFrame(function animate(time) {
+            let timePassed = time - start;
+            if (timePassed > duration) {
+                timePassed = duration;
+            }
+            draw(timePassed);
+            if (timePassed < duration) {
+                requestAnimationFrame(animate);
+            }
+        })
+    };
+    let menu = document.getElementsByTagName('nav')[0];
+     menu.addEventListener('click', function(event) {
+        event.preventDefault();
+        animate(function(timePassed) {
+            let target = event.target;
+          if (target.tagName = 'li') {
+            let section = document.getElementById(target.getAttribute('href').slice(1));
+              window.scrollBy(0, section.getBoundingClientRect().top / 20 - 3);
+          }  
+        }, 1500)
+        
+     })
+				
+
+
 
 });
