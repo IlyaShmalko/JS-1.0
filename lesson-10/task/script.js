@@ -20,4 +20,3 @@ class options {
 
 let option = new options('400px', '400px', 'blue', '32px', 'center');
 option.elemNew();
-
