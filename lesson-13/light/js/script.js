@@ -251,7 +251,6 @@ window.addEventListener('DOMContentLoaded', function() {
 				place.addEventListener('change', function() {
 				if (restDays.value == '' || persons.value == '' || daysSum < 0 || personsSum < 0) {
 						totalValue.innerHTML = 0;
-						totalValue.classList.remove('fade');
 				} else {
 								let a = total;
 								totalValue.innerHTML = a * this.options[this.selectedIndex].value;
