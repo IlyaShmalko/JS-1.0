@@ -230,32 +230,63 @@ window.addEventListener('DOMContentLoaded', function() {
 				daysSum = 0,
 				total = 0;
 
-				totalValue.innerHTML = 0;
+		totalValue.innerHTML = 0;
 
-				persons.addEventListener('change', function() {
-						personsSum = +this.value;
-						total = (personsSum * daysSum) * 4000;
-						if (daysSum > 0) {
-								totalValue.innerHTML = total;
-						}						
-				});
-
-				restDays.addEventListener('change', function() {
-						daysSum = +this.value;
-						total = (personsSum * daysSum) * 4000;
-						if (personsSum > 0) {
-								totalValue.innerHTML = total;							
-						}
-				});
-
-				place.addEventListener('change', function() {
-				if (restDays.value == '' || persons.value == '' || daysSum < 0 || personsSum < 0) {
-						totalValue.innerHTML = 0;
-				} else {
-								let a = total;
-								totalValue.innerHTML = a * this.options[this.selectedIndex].value;
-						}
+		persons.addEventListener('change', function() {
+				personsSum = +this.value;
+				total = (personsSum * daysSum) * 4000;
+				if (daysSum > 0) {
+						totalValue.innerHTML = total;
+				}						
 		});
+
+		restDays.addEventListener('change', function() {
+				daysSum = +this.value;
+				total = (personsSum * daysSum) * 4000;
+				if (personsSum > 0) {
+						totalValue.innerHTML = total;							
+				}
+		});
+
+		place.addEventListener('change', function() {
+		if (restDays.value == '' || persons.value == '' || daysSum < 0 || personsSum < 0) {
+				totalValue.innerHTML = 0;
+		} else {
+						let a = total;
+						totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+				}
+		});
+
+		// Scroll
+
+		function animate(draw, duration) {
+        let start = performance.now();// определяем текущее время
+        requestAnimationFrame(function animate(time) {
+            let timePassed = time - start;//Сколько времени прошло с момента начала анимации
+            if (timePassed > duration) {//если врем 
+                timePassed = duration; //анимация останавливается
+            }
+            draw(timePassed);// отвечает за отрисовку
+            if (timePassed < duration) {// если аниманиция еще не закончилась
+                requestAnimationFrame(animate);// запускаем анимацию снова
+            }
+        })
+    };
+    let menu = document.getElementsByTagName('nav')[0];// елемент
+
+     menu.addEventListener('click', function(event) {// клик
+        event.preventDefault();// отменяем стандартное действие
+        animate(function(timePassed) {//вызываем функцию
+            let target = event.target;// отслеживаем на что мы кликнули
+          if (target.tagName = 'li') {
+          	//ищем то на что мы кликнули и у него забираем href < и отрезаем первый символ(убираем решотку)
+            let section = document.getElementById(target.getAttribute('href').slice(1));
+              //скролим, от 0 к месту от верха страницы до елемента section
+              window.scrollBy(0, section.getBoundingClientRect().top / 20 - 3);// -3 отступ с верху
+          }  
+        }, 1500)
+        
+     })
 
 
 });
